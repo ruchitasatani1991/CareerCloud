@@ -11,9 +11,12 @@ namespace CareerCloud.EntityFrameworkDataAccess
 {
     public class CareerCloudContext:DbContext
     {
-        public CareerCloudContext():base(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString)
+       
+        public CareerCloudContext(bool createProxy = true) : base(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString)
         {
-            Database.Log = l => System.Diagnostics.Debug.WriteLine(l);  
+            Database.Log = l => System.Diagnostics.Debug.WriteLine(l);
+            //Configuration.ProxyCreationEnabled = false;
+            Configuration.ProxyCreationEnabled = createProxy;
         }
         //private void FixEfProviderServicesProblem()
         //{
